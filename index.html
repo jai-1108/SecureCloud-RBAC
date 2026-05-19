@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Access — RBAC Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <i class="fa-solid fa-shield-halved brand-icon"></i>
+      <div>
+        <h2>Secure Access</h2>
+        <p>RBAC Dashboard</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <ul>
+        <li class="nav-item active" data-target="dashboard-view">
+          <i class="fa-solid fa-chart-pie"></i>
+          <span>Dashboard</span>
+        </li>
+        <li class="nav-item" data-target="roles-view">
+          <i class="fa-solid fa-sitemap"></i>
+          <span>Role Hierarchy</span>
+        </li>
+        <li class="nav-item" data-target="users-view">
+          <i class="fa-solid fa-users"></i>
+          <span>Users & Sessions</span>
+        </li>
+        <li class="nav-item" data-target="compliance-view">
+          <i class="fa-solid fa-file-shield"></i>
+          <span>Compliance & Audits</span>
+        </li>
+        <li class="nav-item" data-target="simulator-view">
+          <i class="fa-solid fa-unlock-keyhole"></i>
+          <span>Access Simulator</span>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <!-- Header -->
+    <header class="top-header">
+      <div class="header-left">
+        <h1 id="page-title">Dashboard Overview</h1>
+        <p class="subtitle">Cloud Access Control Dataset · <span class="highlight-text">50 Security Factors</span></p>
+      </div>
+      <div class="header-right">
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search roles, users, policies...">
+        </div>
+        <button class="icon-btn"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></button>
+        <button class="icon-btn"><i class="fa-solid fa-gear"></i></button>
+        <div class="user-profile">
+          <div class="avatar">SC</div>
+          <div class="user-info">
+            <span class="user-name">Sarah Chen</span>
+            <span class="user-role">Super Admin</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Views Container -->
+    <div class="views-container">
+      
+      <!-- 1. DASHBOARD VIEW -->
+      <section id="dashboard-view" class="view active">
+        <!-- Key Metrics -->
+        <div class="metrics-grid">
+          <div class="metric-card glass">
+            <div class="metric-icon teal"><i class="fa-solid fa-user-shield"></i></div>
+            <div class="metric-data">
+              <h3>System Security Score</h3>
+              <div class="metric-value">94<span class="percent">%</span></div>
+            </div>
+            <div class="metric-trend positive"><i class="fa-solid fa-arrow-trend-up"></i> +2.4% from last week</div>
+          </div>
+          <div class="metric-card glass">
+            <div class="metric-icon purple"><i class="fa-solid fa-users"></i></div>
+            <div class="metric-data">
+              <h3>Active Sessions</h3>
+              <div class="metric-value">185</div>
+            </div>
+            <div class="metric-trend neutral"><i class="fa-solid fa-minus"></i> Stable across 3 regions</div>
+          </div>
+          <div class="metric-card glass warning">
+            <div class="metric-icon orange"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div class="metric-data">
+              <h3>Failed Logins (24h)</h3>
+              <div class="metric-value">17</div>
+            </div>
+            <div class="metric-trend negative"><i class="fa-solid fa-arrow-trend-up"></i> +5 suspicious attempts</div>
+          </div>
+          <div class="metric-card glass danger">
+            <div class="metric-icon red"><i class="fa-solid fa-ban"></i></div>
+            <div class="metric-data">
+              <h3>Policy Violations</h3>
+              <div class="metric-value">3</div>
+            </div>
+            <div class="metric-trend negative"><i class="fa-solid fa-circle-exclamation"></i> Action required</div>
+          </div>
+        </div>
+
+        <div class="grid-2col">
+          <!-- Active Sessions Table -->
+          <div class="panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-globe"></i> Global Active Sessions</h3>
+              <button class="btn-secondary btn-sm">View All</button>
+            </div>
+            <div class="panel-body no-padding">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th>Role</th>
+                    <th>Location</th>
+                    <th>Risk Indicator</th>
+                    <th>Last Activity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="user-cell">
+                        <div class="avatar-sm">SC</div>
+                        <div><div class="name">Sarah Chen</div><div class="sub">carol.super</div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-priv">SuperAdmin</span></td>
+                    <td>🇺🇸 NYC</td>
+                    <td><span class="risk-badge risk-low"><i class="fa-solid fa-circle-check"></i> Low Risk</span></td>
+                    <td>2m ago</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="user-cell">
+                        <div class="avatar-sm">JD</div>
+                        <div><div class="name">John Doe</div><div class="sub">alice.admin</div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-priv">Admin</span></td>
+                    <td>🇺🇸 LA</td>
+                    <td><span class="risk-badge risk-med"><i class="fa-solid fa-triangle-exclamation"></i> Medium Risk</span></td>
+                    <td>5m ago</td>
+                  </tr>
+                  <tr class="row-highlight-danger">
+                    <td>
+                      <div class="user-cell">
+                        <div class="avatar-sm danger-bg">ML</div>
+                        <div><div class="name">Mark Lee</div><div class="sub">will.readonly</div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-safe">Read-Only</span></td>
+                    <td>🇨🇳 Beijing</td>
+                    <td><span class="risk-badge risk-high"><i class="fa-solid fa-shield-virus"></i> GEO ANOMALY</span></td>
+                    <td>1m ago</td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <div class="user-cell">
+                        <div class="avatar-sm">YE</div>
+                        <div><div class="name">Yann Ext</div><div class="sub">yann.ext</div></div>
+                      </div>
+                    </td>
+                    <td><span class="badge badge-warn">Ext Contractor</span></td>
+                    <td>🇫🇷 Paris</td>
+                    <td><span class="risk-badge risk-med"><i class="fa-solid fa-triangle-exclamation"></i> SSO Medium</span></td>
+                    <td>10m ago</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Privilege Escalation Requests -->
+          <div class="panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-unlock-keyhole"></i> Escalation Requests</h3>
+            </div>
+            <div class="panel-body no-padding">
+              <ul class="action-list">
+                <li class="action-item">
+                  <div class="action-info">
+                    <div class="action-title"><strong>frank.dev</strong> requested <span class="badge badge-priv">Admin</span></div>
+                    <div class="action-meta">Reason: Emergency deployment to production</div>
+                  </div>
+                  <div class="action-btns">
+                    <button class="btn-icon approve" title="Approve"><i class="fa-solid fa-check"></i></button>
+                    <button class="btn-icon deny" title="Deny"><i class="fa-solid fa-xmark"></i></button>
+                  </div>
+                </li>
+                <li class="action-item">
+                  <div class="action-info">
+                    <div class="action-title"><strong>hank.readonly</strong> requested <span class="badge badge-safe">Developer</span></div>
+                    <div class="action-meta">Reason: Project Beta testing access</div>
+                  </div>
+                  <div class="action-btns">
+                    <button class="btn-icon approve" title="Approve"><i class="fa-solid fa-check"></i></button>
+                    <button class="btn-icon deny" title="Deny"><i class="fa-solid fa-xmark"></i></button>
+                  </div>
+                </li>
+                <li class="action-item">
+                  <div class="action-info">
+                    <div class="action-title"><strong>zoe.temp</strong> requested <span class="badge badge-priv">SuperAdmin</span></div>
+                    <div class="action-meta">Reason: Testing permissions (Auto-flagged)</div>
+                  </div>
+                  <div class="action-btns">
+                    <span class="status-text text-danger"><i class="fa-solid fa-ban"></i> Auto-Denied</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. ROLES VIEW -->
+      <section id="roles-view" class="view">
+        <div class="grid-layout-roles">
+          <div class="panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-sitemap"></i> Role Hierarchy Engine</h3>
+              <div class="header-actions">
+                <button class="btn-primary"><i class="fa-solid fa-plus"></i> Create Role</button>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="text-muted mb-4">Recursive CTE visualization resolving effective permissions across all inheritance levels.</p>
+              
+              <div class="hierarchy-tree">
+                <ul class="tree">
+                  <li>
+                    <div class="tree-node active-node">
+                      <button class="tree-toggle"><i class="fa-solid fa-chevron-down"></i></button>
+                      <i class="fa-solid fa-crown text-purple"></i>
+                      <span class="node-name">ROOT</span>
+                    </div>
+                    <ul class="tree-group">
+                      <li>
+                        <div class="tree-node">
+                          <button class="tree-toggle"><i class="fa-solid fa-chevron-down"></i></button>
+                          <span class="badge badge-priv">SuperAdmin</span>
+                          <span class="node-meta">Inherits: All</span>
+                        </div>
+                        <ul class="tree-group">
+                          <li>
+                            <div class="tree-node">
+                              <button class="tree-toggle"><i class="fa-solid fa-chevron-down"></i></button>
+                              <span class="badge badge-priv">Admin</span>
+                              <span class="node-meta">Users: 4</span>
+                            </div>
+                            <ul class="tree-group">
+                              <li>
+                                <div class="tree-node">
+                                  <button class="tree-toggle"><i class="fa-solid fa-chevron-right"></i></button>
+                                  <span class="badge badge-safe">Developer</span>
+                                  <span class="node-meta">Users: 15</span>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="tree-node">
+                                  <span class="tree-leaf"></span>
+                                  <span class="badge badge-safe">DevOpsEngineer</span>
+                                </div>
+                              </li>
+                              <li>
+                                <div class="tree-node">
+                                  <span class="tree-leaf"></span>
+                                  <span class="badge badge-priv">NetworkAdmin</span>
+                                </div>
+                              </li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </li>
+                      <li>
+                        <div class="tree-node">
+                          <button class="tree-toggle"><i class="fa-solid fa-chevron-right"></i></button>
+                          <span class="badge badge-warn">ComplianceOfficer</span>
+                          <span class="node-meta">ABAC Model</span>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-key"></i> Effective Permissions</h3>
+            </div>
+            <div class="panel-body">
+              <div class="selected-role-card">
+                <h4><span class="badge badge-priv">Admin</span></h4>
+                <p class="text-muted mt-2">Provides comprehensive administrative control over most resources, excluding destructive root operations.</p>
+                
+                <div class="perm-section mt-4">
+                  <h5>Direct Permissions</h5>
+                  <div class="perm-list">
+                    <span class="perm-tag"><i class="fa-solid fa-check"></i> iam.users.manage</span>
+                    <span class="perm-tag"><i class="fa-solid fa-check"></i> db.tables.alter</span>
+                  </div>
+                </div>
+                
+                <div class="perm-section mt-4">
+                  <h5>Inherited Permissions <span class="text-muted">(from Developer)</span></h5>
+                  <div class="perm-list">
+                    <span class="perm-tag inherited"><i class="fa-solid fa-code"></i> api.write</span>
+                    <span class="perm-tag inherited"><i class="fa-solid fa-database"></i> storage.read</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. USERS VIEW -->
+      <section id="users-view" class="view">
+        <div class="panel glass">
+           <div class="panel-header">
+             <h3><i class="fa-solid fa-users-gear"></i> User & Identity Management</h3>
+           </div>
+           <div class="panel-body no-padding">
+             <table class="data-table">
+               <thead>
+                 <tr>
+                   <th>Username</th>
+                   <th>Auth Method</th>
+                   <th>Assigned Roles</th>
+                   <th>Privileged Access</th>
+                   <th>Status</th>
+                   <th>Actions</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>carol.super</td>
+                   <td><span class="auth-tag mfa"><i class="fa-solid fa-mobile-screen"></i> MFA</span></td>
+                   <td>SuperAdmin</td>
+                   <td><span class="text-danger"><i class="fa-solid fa-check-circle"></i> Yes</span></td>
+                   <td><span class="status-dot online"></span> Active</td>
+                   <td><button class="btn-icon"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                 </tr>
+                 <tr>
+                   <td>multirole.user</td>
+                   <td><span class="auth-tag mfa"><i class="fa-solid fa-mobile-screen"></i> MFA</span></td>
+                   <td>Dev, Analyst, Guest</td>
+                   <td><span class="text-muted">No</span></td>
+                   <td><span class="status-dot warning"></span> Multi-Role</td>
+                   <td><button class="btn-icon"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                 </tr>
+                 <tr>
+                   <td>locked.user</td>
+                   <td><span class="auth-tag pwd"><i class="fa-solid fa-key"></i> Password</span></td>
+                   <td>—</td>
+                   <td><span class="text-muted">No</span></td>
+                   <td><span class="status-dot offline"></span> <span class="text-danger">Locked</span></td>
+                   <td><button class="btn-icon"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                 </tr>
+                 <tr>
+                   <td>yann.ext</td>
+                   <td><span class="auth-tag sso"><i class="fa-solid fa-id-badge"></i> SSO</span></td>
+                   <td>ExternalContractor</td>
+                   <td><span class="text-muted">No</span></td>
+                   <td><span class="status-dot online"></span> Active</td>
+                   <td><button class="btn-icon"><i class="fa-solid fa-ellipsis-vertical"></i></button></td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+        </div>
+      </section>
+
+      <!-- 4. COMPLIANCE VIEW -->
+      <section id="compliance-view" class="view">
+        <div class="grid-2col">
+          <div class="panel glass danger-border">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-radiation"></i> Detected Anomalies & Conflicts</h3>
+            </div>
+            <div class="panel-body no-padding">
+              <table class="data-table">
+                <thead><tr><th>Type</th><th>Entity</th><th>Detail</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-priv">SOD VIOLATION</span></td>
+                    <td>adam.privileged</td>
+                    <td>Finance + IAM permissions</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-priv">READ-ADMIN CONFLICT</span></td>
+                    <td>ReadWriteConflict</td>
+                    <td>storage: readonly.all + admin</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-warn">REDUNDANT ROLE</span></td>
+                    <td>AdminV2</td>
+                    <td>Identical to Admin</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-warn">ORPHAN USER</span></td>
+                    <td>orphan.user1</td>
+                    <td>Active user, no role</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          
+          <div class="panel glass">
+            <div class="panel-header">
+              <h3><i class="fa-solid fa-clipboard-check"></i> Policy Coverage (GDPR/HIPAA/SOX)</h3>
+            </div>
+            <div class="panel-body">
+              <div class="compliance-score">
+                <div class="score-circle">
+                  <div class="score-text">A-</div>
+                </div>
+                <div class="score-details">
+                  <h4>Overall Compliance Rating</h4>
+                  <p class="text-muted">Based on average role security scores and anomaly resolution times.</p>
+                </div>
+              </div>
+              
+              <div class="progress-container mt-4">
+                <div class="progress-label">GDPR Data Controls <span class="text-teal">92%</span></div>
+                <div class="progress-bar"><div class="progress-fill teal" style="width: 92%"></div></div>
+              </div>
+              <div class="progress-container mt-3">
+                <div class="progress-label">HIPAA Access Logs <span class="text-purple">85%</span></div>
+                <div class="progress-bar"><div class="progress-fill purple" style="width: 85%"></div></div>
+              </div>
+              <div class="progress-container mt-3">
+                <div class="progress-label">SOX Separation of Duties <span class="text-danger">78%</span></div>
+                <div class="progress-bar"><div class="progress-fill red" style="width: 78%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. ACCESS SIMULATOR VIEW -->
+      <section id="simulator-view" class="view">
+        <div class="simulator-header mb-4">
+          <h2>Access Simulation Test Environment</h2>
+          <p class="text-dim">Test how the RBAC model enforces access controls on form fields.</p>
+        </div>
+
+        <div class="simulator-layout">
+          <!-- Left Column: Identity & Permissions -->
+          <div class="simulator-control glass">
+            <h3>Test Identity</h3>
+            <div class="form-group mt-3">
+              <label>Select Role to Simulate:</label>
+              <select id="sim-role-select" class="dark-input">
+                <option value="SuperAdmin">SuperAdmin</option>
+                <option value="Admin">Admin</option>
+                <option value="HR_Manager">HR Manager</option>
+                <option value="Developer">Developer</option>
+                <option value="Auditor">Auditor</option>
+                <option value="Guest">Guest</option>
+              </select>
+            </div>
+            
+            <h4 class="mt-4 mb-2">Effective Permissions</h4>
+            <div id="sim-permissions-list" class="permissions-tags">
+              <!-- JS will inject permission badges here -->
+            </div>
+          </div>
+
+          <!-- Right Column: Protected Form -->
+          <div class="simulator-form-panel glass">
+            <h3>System Configuration Form</h3>
+            <p class="text-dim mb-3">Fields will automatically lock based on your permissions.</p>
+
+            <form id="protected-form" class="protected-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label><i class="fa-solid fa-lock sim-lock"></i> View Employee Records</label>
+                  <input type="text" value="Available data..." data-requires="read_user" class="dark-input" />
+                </div>
+                <div class="form-group">
+                  <label><i class="fa-solid fa-lock sim-lock"></i> Edit Salary Data</label>
+                  <input type="number" placeholder="$0.00" data-requires="write_salary" class="dark-input" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label><i class="fa-solid fa-lock sim-lock"></i> Assign System Roles</label>
+                <select data-requires="assign_role" class="dark-input">
+                  <option>Select role...</option>
+                  <option>Admin</option>
+                  <option>Developer</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label><i class="fa-solid fa-lock sim-lock"></i> View Audit Logs</label>
+                <textarea rows="2" data-requires="read_audit" class="dark-input">2026-05-02: System OK</textarea>
+              </div>
+
+              <div class="form-actions mt-4" style="display: flex; gap: 1rem;">
+                <button type="button" class="btn btn-danger" data-requires="delete_user">
+                  <i class="fa-solid fa-trash"></i> Delete System
+                </button>
+                <button type="button" class="btn btn-primary" data-requires="write_config">
+                  <i class="fa-solid fa-save"></i> Save Configuration
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
